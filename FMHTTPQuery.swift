@@ -94,25 +94,6 @@ class FMHTTPQuery {
         }
     }
     
-    // Do an UPDATE request
-    func doUpdate(url: String, body: Data, completion: @escaping (Data?, Int?) -> ()){
-        var data: Data?
-        var statusCode: Int?
-        
-        DG.enter()
-        
-        doRequest(method: "UPDATE", url: url, body: body) { (d, i) in
-            data = d
-            statusCode = i
-            
-            self.DG.leave()
-        }
-        
-        DG.notify(queue: .main) {
-            completion(data, statusCode)
-        }
-    }
-    
     // Do a DELETE request
     func doDelete(url: String, body: Data?, completion: @escaping (Data?, Int?) -> ()){
         var data: Data?
